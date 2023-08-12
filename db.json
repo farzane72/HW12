@@ -1,0 +1,46 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "todos": [
+    {
+      "text": "s",
+      "id": 6,
+      "status": false
+    },
+    {
+      "text": "h",
+      "id": 9,
+      "status": true
+    },
+    {
+      "text": "oo",
+      "id": 10,
+      "status": false
+    },
+    {
+      "text": "y",
+      "id": 1691751266953,
+      "status": true
+    },
+    {
+      "text": "we",
+      "id": 1691751271463,
+      "status": false
+    }
+  ]
+}
