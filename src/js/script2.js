@@ -33,9 +33,13 @@ let textEditTask = "";
 //-------------------------------------------------------------------------------------------------------------------------------------
 const url = "http://localhost:3005";
 //--------------function api------------------------------------------------------------------------------------------------------------
-const getTodoes = async () => {
-  const res = await fetch(`${url}/todos`);
+const getTodoes = async (pageNumber=1,RpG='') => {
+  const res = await fetch(`${url}/todos/?_page=${pageNumber}&_limit=${RpG}`);
+  console.log(RpG);
+  //const res = await fetch(`${url}/todos`);
   const data = await res.json();
+  console.log(data);
+  localStorage.setItem("totalCount",res.headers.get("x-Total-Count"))
   return data;
 };
 const setTodoes = async (data) => {
@@ -433,3 +437,50 @@ function deleteModalBtnAll() {
   console.log(alltasks);
   main.style.display = "none";
 }
+//---------------------------------------------------------------------------------------------------------------
+renderPagination=async(pageNumber)=>
+{
+  console.log(select.value);
+  let RpG=select?select.value:'All';
+  //let dataset;
+  console.log(RpG);
+  if(RpG !== "All"){
+    await getTodoes(pageNumber,RpG)
+    .then((data)=>showTasks(data))
+    console.log(RpG);
+  }
+  else{
+    await getTodoes(pageNumber,RpG)
+    .then((data)=>showTasks(data))
+  }
+  //pageNumber
+}
+
+//----------------------for section 2-------------------------------------------------------------------------------
+let select=document.getElementById("select-rows")
+let prev=document.getElementById("btn-prev")
+let next=document.getElementById("btn-next")
+let page=document.getElementById("counter-page")
+select.addEventListener("change",renderPagination)
+// prev.addEventListener("click",()=>{
+    
+// })
+next.addEventListener("click",()=>{
+  const totalCount=localStorage.getItem('totalCount')
+   if (+page.innerHTML < Math.ceil(+totalCount/+select.value)){
+    page.innerText=+page.innerText+1
+   // showTasks(page.innerText)
+   //getTodoes(page.innerText).then((data)=>showTasks(data))
+   renderPagination(page.innerText)
+
+   }
+  
+})
+//--------------------------------------------------------------------------------------------------
+
+
+// const getTodoes2 = async (pageNumber=1,RpG) => {
+//     const res = await fetch(`${url}/todos/?_page=${pageNumber}&_limit=${RpG}`);
+//     const data = await res.json();
+//     return data;
+//   };

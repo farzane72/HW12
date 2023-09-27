@@ -56,7 +56,7 @@ body {
   top:50px; */
 }
 h2 {
-  text-align: center;
+  text-align: left;
   padding: 10px;
   font-weight: lighter;
 }
@@ -216,4 +216,15 @@ button:focus{
 .modal2 p {
   color: rgb(80, 79, 79);
   padding: 15px;
+}
+.sec-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.select-row{
+  display: flex;
+  gap:4px;
+  align-items: center;
+
 }
